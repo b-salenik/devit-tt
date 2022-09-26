@@ -8,14 +8,16 @@ const selectors = {
 }
 
 
-const selectHandler = (controller) => {
-    //can be some issues if product have some special charters like ' " etc.
+
+const controllerHandle = (controller) => {
     const currentVariant = JSON.parse(controller.dataset.currentVariant);
     const productOptions = JSON.parse(controller.dataset.productOptions);
     const productVariants = JSON.parse(controller.dataset.productVariants);
     let selectedVariant = currentVariant;
+    const selects = controller.querySelectorAll('select');
 
-    return (e) => {
+    const selectHandler = (e) => {
+        //can be some issues if product have some special charters like ' " etc.
         const name = e.target.dataset.name;
         const selectedValue = e.target.value
         const selectedOption = productOptions.find(option => option.name === name)
@@ -45,14 +47,11 @@ const selectHandler = (controller) => {
 
         addToCartButton.classList.remove('disabled')
     };
-};
 
-const controllerHandle = (controller) => {
-    const selects = controller.querySelectorAll('select');
 
     if (selects.length > 0) {
         selects.forEach(select => {
-            select.addEventListener('change', selectHandler(controller))
+            select.addEventListener('change', selectHandler)
         })
     }
 };
