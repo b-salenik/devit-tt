@@ -26,6 +26,20 @@
           opacity: 0.8;
         }
       }
+
+      a {
+        display: none;
+        &.visible {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: white;
+
+          &:visited {
+            color: white;
+          }
+        }
+      }
     }
   }
 }
