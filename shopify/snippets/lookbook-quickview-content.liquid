@@ -1,0 +1,30 @@
+<div class="lookbook-content">
+    <div class="img">
+        <img src="{{ img | img_url: '350x' }}" alt="{{ img.alt }}">
+    </div>
+    <div class="products">
+        {% for product in product_list %}
+            <div class="products__item item">
+               <div class="item__img">
+                   <img src="{{ product.images[0] | img_url: '150x' }}" alt="">
+               </div>
+
+                <div class="item__content content">
+                    <div class="content__top">
+                        <a href="{{ product.url }}"
+                           target="_blank"
+                           class="name"
+                        >
+                            {{ product.handle }}
+                        </a>
+                        <span class="price">{{ product.price | money }}</span>
+                    </div>
+                    <div class="content__middle">{{ product.metafields['global']['additional_description'] }}</div>
+                    <div class="content__form">
+                        {% render 'lookbook-form', product: product %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

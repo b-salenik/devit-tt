@@ -1,0 +1,130 @@
+.lookbook-quickview {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  &.visible {
+    display: flex;
+    transform: scale(1);
+
+  }
+  //overlay
+  .lookbook-quickview__overlay {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, .4);
+  }
+
+  //Container
+  .lookbook-container {
+    position: absolute;
+
+    max-height: calc(100vh - 100px);
+    max-width: 1020px;
+    width: 95%;
+    padding: 32px 24px 24px;
+
+    background-color: white;
+
+    .close-btn {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+
+      background: none;
+      border: none;
+      transform: translate(-16px,-50%);
+
+      cursor: pointer;
+      color: black;
+      text-decoration: underline;
+
+    }
+  }
+
+  //Content
+  .lookbook-container__content {
+    max-height: calc(100vh - 100px - 56px);
+    overflow: scroll;
+    .lookbook-content {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 32px;
+    }
+
+    //Lookbook big image
+    .img {
+      width: 50%;
+      flex-shrink: 0;
+      display: none;
+      @media (min-width: 768px) {
+        display: block;
+      }
+    }
+    //Products
+    .products {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 0 24px 0 0;
+
+      .products__item {
+        display: flex;
+        justify-content: flex-start;
+        gap: 24px;
+
+        &.item {
+          .item__img {
+            max-width: 150px;
+            width: 100%;
+          }
+          .item__content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            width: 100%;
+            &.content {
+              .content__top {
+                display: flex;
+                justify-content: space-between;
+
+                margin-bottom: 10px;
+                .price {
+                  display: inline-block;
+                  white-space: nowrap;
+                  margin-left: 12px;
+                }
+              }
+              .content__middle {}
+              .content__form {}
+            }
+          }
+        }
+
+        a {
+          text-decoration: none;
+          color: black;
+          &:visited {
+            color: black;
+          }
+        }
+      }
+
+    }
+  }
+}

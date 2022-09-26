@@ -1,0 +1,29 @@
+{% comment %}
+    Params:
+        product_list --> product list outer (outer array of product handles)
+        img --> lookbook image from customize
+{% endcomment %}
+
+<div class="lookbook-quickview"
+     data-lookbook-quickview-popup
+     id="{{ id }}"
+>
+    <div class="lookbook-quickview__overlay"
+         data-lookbook-quickview-popup-close></div>
+
+    <div class="lookbook-quickview__container lookbook-container">
+        <button type="button"
+                class="close-btn"
+                data-lookbook-quickview-popup-close
+        >
+            close
+        </button>
+
+        <div class="lookbook-container__content"
+             data-quickview-popup-content
+        >
+            {%- render 'lookbook-quickview-content', product_list: product_list, img: img -%}
+        </div>
+    </div>
+</div>
+

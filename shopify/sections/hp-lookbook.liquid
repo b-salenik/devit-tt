@@ -1,0 +1,83 @@
+{% assign title = section.settings.title | default: 'Lookbook' %}
+{% assign label = section.settings.label %}
+{% assign blocks = section.blocks %}
+
+<section id="hp-lookbook"
+         data-section-id="{{ section.id }}"
+>
+  <div class="container">
+    <h2>{{ title }}</h2>
+    <div class="hp-lookbook">
+      {% for block in blocks %}
+        <div class="hp-lookbook__item item"
+             data-lookbook="lb-{{ block.id }}"
+        >
+          {% assign img = block.settings.image %}
+          {% assign product_list = block.settings.product_list %}
+
+          {% if img != blank %}
+            <div class="item__img">
+              <img src="{{ img | img_url: '350x' }}" alt="{{ img.alt }}">
+            </div>
+            <div class="item__label">{{ label }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<!-- Modals -->
+{% for block in blocks %}
+  {% assign img = block.settings.image %}
+  {% assign product_list = block.settings.product_list %}
+  {% assign id = 'lb-' | append: block.id %}
+
+  {% render 'lookbook-quickview', id: id, product_list: product_list, img: img %}
+{% endfor %}
+
+
+{% schema %}
+{
+  "name": "HP Lookbook",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Hover label",
+      "default": "View look"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "lookbook_items",
+      "name": "Lookbook item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Item image"
+        },
+        {
+          "type": "product_list",
+          "id": "product_list",
+          "label": "Products in"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Home page",
+      "name":"HP hp-lookbook"
+    }
+  ]
+}
+{% endschema %}

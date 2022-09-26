@@ -1,0 +1,31 @@
+.lookbook-form {
+  .lookbook-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    .lookbook-actions__selects {
+      display: flex;
+      gap: 12px;
+      select {
+        padding: 5px;
+        outline: none;
+        box-shadow: none;
+        &:focus, &:active {
+          outline: none;
+          box-shadow: none;
+        }
+      }
+    }
+    .lookbook-actions__cta {
+      button {
+        width: 100%;
+
+        &.disabled {
+          pointer-events: none;
+          background: gray;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
